@@ -1,0 +1,8 @@
+.img-fluid {
+    max-width: 550px;
+    height: 550px;
+}
+
+.mat-mdc-form-field-error {
+    display: inline-block;
+}

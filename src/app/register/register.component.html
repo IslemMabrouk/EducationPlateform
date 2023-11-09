@@ -1,0 +1,207 @@
+<section class="vh-100">
+	<div class="container h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-lg-12 col-xl-11">
+				<div>
+					<div class="card-body p-md-5">
+						<div class="row justify-content-center">
+							<div class="col-md-10 col-lg-8 col-xl-8 order-2 order-lg-1">
+
+								<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+								<form class="mx-1 mx-md-4" [formGroup]="registerForm">
+									<div class="row mb-3">
+										<div class="col-12 col-md-6">
+											<label for="form3Example1c">First Name</label>
+											<mat-form-field appearance="outline">
+												<input matInput placeholder="First Name" formControlName="firstName" required>
+
+											<!-- Control Input First Name -->
+											<mat-error
+												*ngIf="registerForm.controls['firstName']?.invalid && (registerForm.controls['firstName']?.dirty || registerForm.controls['firstName']?.touched)">
+												<mat-error *ngIf="registerForm.get('firstName')?.hasError('required')">
+													<i class="fa fa-exclamation-triangle"></i>
+													First name is <strong>required</strong>
+												</mat-error>
+											</mat-error>
+
+											</mat-form-field>
+											</div>
+											
+											<div class="col-12 col-md-6">
+												<label for="form3Example3c">Last Name</label>
+												<mat-form-field appearance="outline" required>
+												<input matInput placeholder="Last Name" formControlName="lastName" required>
+
+												<!-- Control Input Last Name -->
+											<mat-error
+											*ngIf="registerForm.controls['lastName']?.invalid && (registerForm.controls['lastName']?.dirty || registerForm.controls['lastName']?.touched)">
+											<mat-error *ngIf="registerForm.get('lastName')?.hasError('required')">
+												<i class="fa fa-exclamation-triangle"></i>
+												lastName is <strong>required</strong>
+											</mat-error>
+										</mat-error>
+
+											</mat-form-field>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-12 col-md-6">
+											<label for="form3Example1c">Phone Number</label>
+											<mat-form-field appearance="outline" style="margin-bottom: 20px;">
+												<input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+												<mat-hint>You will receive an SMS on this number, make sure it is correct</mat-hint>
+
+												<!-- Control Input Phone number -->
+												<mat-error
+													*ngIf="registerForm.controls['phoneNumber']?.invalid && (registerForm.controls['phoneNumber']?.dirty || registerForm.controls['phoneNumber']?.touched)">
+													<mat-error *ngIf="registerForm.get('phoneNumber')?.hasError('required')">
+														<i class="fa fa-exclamation-triangle"></i>
+														phoneNumber is <strong>required</strong>
+													</mat-error>
+												</mat-error>
+
+											</mat-form-field>
+										</div>
+
+										<div class="col-12 col-md-6">
+											<label for="form3Example3c">Date of Birth</label>
+											<mat-form-field appearance="outline">
+												<input matInput [matDatepicker]="picker" placeholder="Choose a date"
+													formControlName="dateOfBirth" required>
+												<mat-hint>MM/DD/YYYY</mat-hint>
+												<mat-datepicker-toggle matIconSuffix
+													[for]="picker"></mat-datepicker-toggle>
+												<mat-datepicker #picker></mat-datepicker>
+
+												<!-- Control Input Date of Birth -->
+												<mat-error
+													*ngIf="registerForm.controls['dateOfBirth']?.invalid && (registerForm.controls['dateOfBirth']?.dirty || registerForm.controls['dateOfBirth']?.touched)">
+													<mat-error *ngIf="registerForm.get('dateOfBirth')?.hasError('required')">
+														<i class="fa fa-exclamation-triangle"></i>
+														Date of Birth is <strong>required</strong>
+													</mat-error>												
+												</mat-error>
+
+											</mat-form-field>
+
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-12 col-md-6">
+											<label for="form3Example1c">Password</label>
+											<mat-form-field appearance="outline">
+												<input matInput placeholder="Password (minimum 8 characters)"
+													formControlName="password" required>
+
+													<!-- Control Input Password -->
+												<mat-error
+												*ngIf="registerForm.controls['password']?.invalid && (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)">
+
+												<mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+													<i class="fa fa-exclamation-triangle"></i>
+													Password is <strong>required</strong>
+												</mat-error>	
+											
+											<mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+												<i class="fa fa-exclamation-triangle"></i>
+												Password must be at least <strong>8 characters long</strong>
+											  </mat-error>	
+
+											</mat-error>
+
+											</mat-form-field>
+										</div>
+
+										<div class="col-12 col-md-6">
+											<label for="form3Example3c">Confirm the Password</label>
+											<mat-form-field appearance="outline">
+												<input matInput placeholder="Confirm the Password"
+													formControlName="confirmPassword" required>
+
+													<!-- Control Input confirm password -->
+												<mat-error
+												*ngIf="registerForm.controls['confirmPassword']?.invalid && (registerForm.controls['confirmPassword']?.dirty || registerForm.controls['confirmPassword']?.touched)">
+												<mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+													<i class="fa fa-exclamation-triangle"></i>
+													Confirm password is <strong>required</strong>
+												</mat-error>
+											</mat-error>										  
+
+											</mat-form-field>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col-12 col-md-6">
+											<label for="form3Example1c">Choose your state</label>
+											<mat-form-field appearance="outline">
+												<mat-select disableRipple placeholder="Choose your state"
+													formControlName="state">
+													<mat-option value="" disabled seleted>Choose your state</mat-option>
+													<mat-option *ngFor="let state of states" [value]="states"
+														required>{{state.name}}</mat-option>
+												</mat-select>
+
+												<!-- Control Input State -->
+												<mat-error
+													*ngIf="registerForm.controls['state']?.invalid && (registerForm.controls['state']?.dirty || registerForm.controls['state']?.touched)">
+													<i class="fa fa-exclamation-triangle"></i>
+													State is <strong>required</strong>
+												</mat-error>
+
+											</mat-form-field>
+
+										</div>
+
+										<div class="col-12 col-md-6">
+											<label for="form3Example3c">Choose your division</label>
+											<mat-form-field appearance="outline">
+												<mat-select disableRipple placeholder="Choose your division"
+													formControlName="division">
+													<mat-option value="" disabled seleted>Choose your
+														division</mat-option>
+													<mat-option *ngFor="let division of divisions" [value]="divisions"
+														required>{{division.name}}</mat-option>
+												</mat-select>
+
+												<!-- Control Input division -->
+												<mat-error
+													*ngIf="registerForm.controls['division']?.invalid && (registerForm.controls['division']?.dirty || registerForm.controls['division']?.touched)">
+													<i class="fa fa-exclamation-triangle"></i>
+													Division is <strong>required</strong>
+												</mat-error>
+
+											</mat-form-field>
+
+										</div>
+									</div>
+
+									<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+										<button type="button" class="btn btn-primary btn-lg"
+											(click)="createAccount(registerForm.value)">Create an account</button>
+									</div>
+
+									<div class="form-check d-flex justify-content-center mb-5">
+										<label>
+											Do you already have an account? <a href="#!">Login</a>
+										</label>
+									</div>
+
+								</form>
+
+							</div>
+							<div class="col-md-10 col-lg-4 col-xl-4 d-flex align-items-center order-1 order-lg-2">
+
+								<img src="assets/images/register.jpg" class="img-fluid" alt="Sample image">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

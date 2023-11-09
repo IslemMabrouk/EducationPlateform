@@ -1,0 +1,28 @@
+import { State } from '../models/state.model';
+
+export var states: State [] = [
+    { name: "Tunis" },
+    { name: "Sfax" },
+    { name: "Sousse" },
+    { name: "Nabeul" },
+    { name: "Bizerte" },
+    { name: "Al Munastir" },
+    { name: "Gabes" },
+    { name: "Jendouba"},
+    { name: "Madanin"},
+    { name: "Qasfah"},
+    { name: "Tataouine"},
+    { name: "Bajah"},
+    { name: "Tozeur"},
+    { name: "Kebili"},
+    { name: "Sidi Bou Zid"},
+    { name: "Kasseine"},
+    { name: "Siliana"},
+    { name: "El kef"},
+    { name: "Zaghouan"},
+    { name: "Al Mahdia"},
+    { name: "Ben Arous"},
+    { name: "Kairouan"},
+    { name: "Manouba"},
+    { name: "Ariana"},
+]
