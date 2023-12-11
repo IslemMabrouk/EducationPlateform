@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { states } from '../shared/store/state-data-store';
-import { State } from '../shared/models/state.model';
-import { divisions } from '../shared/store/division-dtata-store';
+import { states } from '../../shared/store/state-data-store';
+import { State } from '../../shared/models/state.model';
+import { divisions } from '../../shared/store/division-dtata-store';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
  
 @Component({
   selector: 'app-register',
@@ -10,6 +11,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+
+  messageAdd:any;
 
   public states: State[] = State.sortByName(states);
   public divisions:any=divisions;
@@ -26,7 +29,7 @@ export class RegisterComponent implements OnInit {
   });
 
   
-  constructor( private fB:FormBuilder){
+  constructor( private fB:FormBuilder, private userService : UserService){
   }
 
   ngOnInit(): void {
@@ -44,11 +47,16 @@ export class RegisterComponent implements OnInit {
 
 
   createAccount(registerFormValue:any): void {
-    if (registerFormValue.valid) {
       const formData = this.registerForm.value;
-      // Perform your account creation logic with the form data
-      console.log('Form data:', formData);
-    }
+
+      this.userService.addUser(formData).subscribe(
+        (data) => {
+          this.messageAdd = data.message;
+          console.log(data);
+          
+        }
+      )
+
   }
   
 
